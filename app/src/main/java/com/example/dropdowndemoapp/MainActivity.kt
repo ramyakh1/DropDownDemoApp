@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dropdown()
+        countryListdropdown()
         binding.btnSubmit.setOnClickListener { result() }
     }
     private fun result(){
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvResult.text= " $address , $country"
     }
 
-    private fun dropdown(){
+    private fun countryListdropdown(){
         binding.etCountry.setOnClickListener{
             closekeyBoard(binding.etCountry)
             val items= resources.getStringArray(R.array.country_list)
@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun closekeyBoard(view: View){
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken,0)
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        imm!!.hideSoftInputFromWindow(view.windowToken,0)
 
     }
 }
